@@ -1,1 +1,87 @@
+body {
+  font-family: "Sono", sans-serif;
+  background: rgb(250, 244, 225);
+  color: rgb(199, 39, 103);
+}
+h1 {
+  font-size: 25px;
+}
+ul {
+  font-size: 13px;
+  text-align: center;
+  line-height: 30px;
+  padding-top: 25px;
+  padding-right: 38px;
+}
 
+li {
+  list-style: none;
+}
+
+.website-title {
+  font-size: 30px;
+  font-family: "Arvo", serif;
+  padding-top: 15px;
+}
+
+.current-location {
+  font-size: 15px;
+}
+
+.search-form {
+  font-family: "Arvo", serif;
+  padding-top: 15px;
+}
+
+.weather-info {
+  border: 1px solid rgba(236, 148, 84, 0.1);
+  padding: 30px;
+  margin: 30px auto;
+  max-width: 600px;
+  border-radius: 15px;
+  background: rgba(236, 148, 84, 0.1);
+}
+
+.current-date {
+  font-size: 15px;
+  text-align: end;
+}
+
+.current-time {
+  font-size: 15px;
+  text-align: end;
+}
+
+.temperature {
+  font-size: 85px;
+  text-align: center;
+  padding-top: 20px;
+  font-weight: 500;
+}
+
+.units {
+  position: relative;
+  font-size: 18px;
+  top: -40px;
+  left: -15px;
+}
+
+.image {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.cloudsunrain {
+  font-size: 85px;
+  color: rgb(250, 188, 65);
+}
+
+.current-description {
+  font-family: "Arvo", serif;
+  font-size: 18px;
+  padding-top: 8px;
+}
+
+.high-low {
+  text-align: center;
+}
