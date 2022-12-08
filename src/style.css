@@ -80,8 +80,14 @@ li {
   font-family: "Arvo", serif;
   font-size: 18px;
   padding-top: 8px;
+  text-transform: capitalize;
 }
 
 .high-low {
   text-align: center;
+}
+
+.updated-time {
+  text-align: right;
+  font-size: 11px;
 }

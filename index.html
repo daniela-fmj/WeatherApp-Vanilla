@@ -40,7 +40,7 @@
       <div class="weather-info">
         <div class="row justify-content-between">
           <div class="col-6">
-            <h1 class="search-city-output">Ann Arbor, MI, USA</h1>
+            <h1 class="search-city-output" id="search-city-output"></h1>
           </div>
           <div class="col-5 current-date" id="current-date-time">
             Wednesday, November 13, 2022 |
@@ -50,7 +50,7 @@
         <div class="row justify-content-between">
           <div class="col-6">
             <div class="temperature" id="current-temp">
-              16<span class="units">
+              10<span class="units">
                 <a href="#" id="celsius-link">°C|</a
                 ><a href="#" id="fahrenheit-link">°F</a>
               </span>
@@ -67,15 +67,15 @@
         </div>
         <div class="other-information">
           <ul>
-            <li class="current-description">Partly cloudy</li>
+            <li class="current-description" id="current-description">
+              Partly cloudy
+            </li>
             <li id="current-humidity">Humidity: 68%</li>
             <li id="current-wind">Wind: 4 km/h</li>
+            <li id="feels-like">Feels like: 09</li>
           </ul>
         </div>
-        <div class="high-low">
-          <span class="high" id="current-high">H: 20° |</span>
-          <span class="low" id="current-low">L: 13°</span>
-        </div>
+        <div class="updated-time" id="updated-time">Last Updated:</div>
       </div>
       <small>
         <a
