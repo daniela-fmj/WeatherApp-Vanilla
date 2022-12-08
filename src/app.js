@@ -1,6 +1,7 @@
 let currentTime = new Date();
 
 function formatDate(date) {
+  let currentTime = new Date();
   let days = [
     "Sunday",
     "Monday",
@@ -45,6 +46,34 @@ function formatDate(date) {
   return formattedDate;
 }
 
+function formatUpdate(timestamp) {
+  let date = new Date(timestamp);
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let day = days[date.getDay()];
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  return `Last updated: ${day} ${hours}:${minutes}`;
+}
+
 function showWeather(response) {
   let name = response.data.city;
   let country = response.data.country;
@@ -59,12 +88,20 @@ function showWeather(response) {
   let humidityElement = document.querySelector("#current-humidity");
   let feelsLike = Math.round(response.data.temperature.feels_like);
   let feelsLikeElement = document.querySelector("#feels-like");
+  let upDateElement = document.querySelector("#updated-time");
+  let iconElement = document.querySelector("#icon");
   nameElement.innerHTML = `${name}, ${country}`;
   temperatureElement.innerHTML = `${temperature}`;
   descriptionElement.innerHTML = `${description}`;
   windElement.innerHTML = `Wind: ${wind} km/h`;
   humidityElement.innerHTML = `Humidity: ${humidity}%`;
   feelsLikeElement.innerHTML = `Feels like: ${feelsLike}°`;
+  upDateElement.innerHTML = formatUpdate(response.data.time * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 //let currentLat = position.coordinates.latitude;
