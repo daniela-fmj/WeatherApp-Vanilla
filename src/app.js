@@ -71,7 +71,7 @@ function formatUpdate(timestamp) {
     hours = `0${hours}`;
   }
 
-  return `Last updated: ${day} ${hours}:${minutes}`;
+  return `${day} ${hours}:${minutes}`;
 }
 
 function showWeather(response) {
@@ -104,14 +104,30 @@ function showWeather(response) {
   iconElement.setAttribute("alt", response.data.condition.description);
 }
 
+function searchOutput(city) {
+  let apiKey = "bb5334ba8af33c900ec45484b2tfof2d";
+  let units = "metric";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showWeather);
+}
+
+function submitCity(event) {
+  event.preventDefault();
+  let cityName = document.querySelector("#search-city");
+
+  //   let cityOutput = document.querySelector(".search-city-output");
+  //   cityOutput.innerHTML = `${cityFullName}`;
+  //   search(cityName.value);
+  searchOutput(cityName.value);
+}
+
 //let currentLat = position.coordinates.latitude;
 //let currentLong = position.coordinates.longitude;
-let city = "Tokyo";
-let apiKey = "bb5334ba8af33c900ec45484b2tfof2d";
-let units = "metric";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
-axios.get(apiUrl).then(showWeather);
 
 //Calling date and time
 let currentDate = document.querySelector(".current-date");
 currentDate.innerHTML = formatDate(currentTime);
+
+//Replacing city name
+let citySearch = document.querySelector("#city-name");
+citySearch.addEventListener("submit", submitCity);

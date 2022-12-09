@@ -29,8 +29,11 @@ li {
 }
 
 .search-form {
-  font-family: "Arvo", serif;
+  font-family: "Sono", sans-serif;
   padding-top: 15px;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
 }
 
 .weather-info {
@@ -68,14 +71,13 @@ li {
 
 .image {
   text-align: center;
-  padding-top: 40px;
+  padding-top: 15px;
 }
 
-.cloudsunrain {
-  font-size: 85px;
-  color: rgb(250, 188, 65);
+.icon {
+  width: 150px;
+  height: auto;
 }
-
 .current-description {
   font-family: "Arvo", serif;
   font-size: 18px;

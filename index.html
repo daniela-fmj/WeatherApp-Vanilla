@@ -37,6 +37,28 @@
           </div>
         </div>
       </div>
+      <div class="weather-search">
+        <form class="search-form" id="city-name">
+          <div class="row">
+            <div class="col-9">
+              <input
+                type="text"
+                placeholder="Enter city name..."
+                autofocus="on"
+                class="form-control"
+                id="search-city"
+              />
+            </div>
+            <div class="col-3">
+              <input
+                type="submit"
+                value="Search"
+                class="form-control btn btn-primary"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="weather-info">
         <div class="row justify-content-between">
           <div class="col-6">
@@ -58,7 +80,7 @@
           </div>
           <div class="col-6">
             <div class="image">
-              <img src="" id="icon" />
+              <img src="" id="icon" class="icon" />
             </div>
           </div>
         </div>
@@ -72,7 +94,11 @@
             <li id="feels-like">Feels like: 09</li>
           </ul>
         </div>
-        <div class="updated-time" id="updated-time">Last Updated:</div>
+        <div class="updated-time">
+          Last Updated:
+          <br />
+          <div class="updated-time" id="updated-time"></div>
+        </div>
       </div>
       <small>
         <a
