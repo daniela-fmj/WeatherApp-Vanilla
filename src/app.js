@@ -74,25 +74,44 @@ function formatUpdate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#current-temp");
+  celUnit.classList.remove("active");
+  farUnit.classList.add("active");
+  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
+  currentTemp.innerHTML = Math.round(fahrenheitTemp);
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  celUnit.classList.add("active");
+  farUnit.classList.remove("active");
+  let currentTemp = document.querySelector("#current-temp");
+  currentTemp.innerHTML = Math.round(celsiusTemperature);
+}
+
 function showWeather(response) {
   let name = response.data.city;
   let country = response.data.country;
   let nameElement = document.querySelector("#search-city-output");
-  let temperature = Math.round(response.data.temperature.current);
   let temperatureElement = document.querySelector("#current-temp");
-  let description = response.data.condition.description;
   let descriptionElement = document.querySelector("#current-description");
-  let wind = Math.round(response.data.wind.speed);
   let windElement = document.querySelector("#current-wind");
-  let humidity = response.data.temperature.humidity;
   let humidityElement = document.querySelector("#current-humidity");
-  let feelsLike = Math.round(response.data.temperature.feels_like);
   let feelsLikeElement = document.querySelector("#feels-like");
   let upDateElement = document.querySelector("#updated-time");
   let iconElement = document.querySelector("#icon");
+
+  let wind = Math.round(response.data.wind.speed);
+  let humidity = response.data.temperature.humidity;
+  let feelsLike = Math.round(response.data.temperature.feels_like);
+
+  celsiusTemperature = response.data.temperature.current;
+
   nameElement.innerHTML = `${name}, ${country}`;
-  temperatureElement.innerHTML = `${temperature}`;
-  descriptionElement.innerHTML = `${description}`;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  descriptionElement.innerHTML = response.data.condition.description;
   windElement.innerHTML = `Wind: ${wind} km/h`;
   humidityElement.innerHTML = `Humidity: ${humidity}%`;
   feelsLikeElement.innerHTML = `Feels like: ${feelsLike}°`;
@@ -114,15 +133,11 @@ function searchOutput(city) {
 function submitCity(event) {
   event.preventDefault();
   let cityName = document.querySelector("#search-city");
-
-  //   let cityOutput = document.querySelector(".search-city-output");
-  //   cityOutput.innerHTML = `${cityFullName}`;
-  //   search(cityName.value);
   searchOutput(cityName.value);
+  console.log(Atlanta);
 }
 
-//let currentLat = position.coordinates.latitude;
-//let currentLong = position.coordinates.longitude;
+let celsiusTemperature = null;
 
 //Calling date and time
 let currentDate = document.querySelector(".current-date");
@@ -131,3 +146,11 @@ currentDate.innerHTML = formatDate(currentTime);
 //Replacing city name
 let citySearch = document.querySelector("#city-name");
 citySearch.addEventListener("submit", submitCity);
+
+//Celsius-Fahrenheit
+
+let celUnit = document.querySelector("#celsius-link");
+celUnit.addEventListener("click", convertToCelsius);
+
+let farUnit = document.querySelector("#fahrenheit-link");
+farUnit.addEventListener("click", convertToFahrenheit);

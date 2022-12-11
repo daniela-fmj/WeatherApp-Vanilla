@@ -69,13 +69,16 @@
             <span class="current-time">9:50</span>
           </div>
         </div>
-        <div class="row justify-content-between">
+        <div class="row">
           <div class="col-6">
-            <div class="temperature" id="current-temp">
-              10<span class="units">
-                <a href="#" id="celsius-link">°C|</a
-                ><a href="#" id="fahrenheit-link">°F</a>
-              </span>
+            <div class="d-flex temperature">
+              <p class="current-temp" id="current-temp"></p>
+              <span class="units">
+                <a href="#" id="celsius-link" class="active celsius-link">°C</a>
+                |<a href="#" id="fahrenheit-link" class="fahrenheit-link"
+                  >°F</a
+                ></span
+              >
             </div>
           </div>
           <div class="col-6">

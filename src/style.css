@@ -18,6 +18,10 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 .website-title {
   font-size: 30px;
   font-family: "Arvo", serif;
@@ -57,16 +61,25 @@ li {
 
 .temperature {
   font-size: 85px;
-  text-align: center;
   padding-top: 20px;
   font-weight: 500;
 }
 
+.current-temp {
+  text-align: center;
+  margin-left: 20px;
+}
+
 .units {
   position: relative;
-  font-size: 18px;
-  top: -40px;
-  left: -15px;
+  font-size: 20px;
+  top: 25px;
+  left: -5px;
+}
+
+.celsius-link:hover,
+.fahrenheit-link:hover {
+  text-decoration: underline;
 }
 
 .image {
@@ -85,11 +98,16 @@ li {
   text-transform: capitalize;
 }
 
-.high-low {
-  text-align: center;
-}
-
 .updated-time {
   text-align: right;
   font-size: 11px;
+}
+
+.temperature .active {
+  color: rgb(199, 39, 103);
+  cursor: default;
+}
+
+.temperature .active:hover {
+  text-decoration: none;
 }
