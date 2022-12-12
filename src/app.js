@@ -95,6 +95,7 @@ function showWeather(response) {
   let name = response.data.city;
   let country = response.data.country;
   let nameElement = document.querySelector("#search-city-output");
+  let countryElement = document.querySelector("#search-country-output");
   let temperatureElement = document.querySelector("#current-temp");
   let descriptionElement = document.querySelector("#current-description");
   let windElement = document.querySelector("#current-wind");
@@ -109,12 +110,13 @@ function showWeather(response) {
 
   celsiusTemperature = response.data.temperature.current;
 
-  nameElement.innerHTML = `${name}, ${country}`;
+  nameElement.innerHTML = `${name}`;
+  countryElement.innerHTML = `${country}`;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   descriptionElement.innerHTML = response.data.condition.description;
-  windElement.innerHTML = `Wind: ${wind} km/h`;
-  humidityElement.innerHTML = `Humidity: ${humidity}%`;
-  feelsLikeElement.innerHTML = `Feels like: ${feelsLike}°`;
+  windElement.innerHTML = `${wind} km/h`;
+  humidityElement.innerHTML = `${humidity}%`;
+  feelsLikeElement.innerHTML = `${feelsLike}°`;
   upDateElement.innerHTML = formatUpdate(response.data.time * 1000);
   iconElement.setAttribute(
     "src",
@@ -134,7 +136,6 @@ function submitCity(event) {
   event.preventDefault();
   let cityName = document.querySelector("#search-city");
   searchOutput(cityName.value);
-  console.log(Atlanta);
 }
 
 let celsiusTemperature = null;

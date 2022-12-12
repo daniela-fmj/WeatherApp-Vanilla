@@ -30,13 +30,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="title-units">
-        <div class="row">
-          <div class="col-8">
-            <p class="website-title">Weather or Not</p>
-          </div>
-        </div>
-      </div>
+      <div class="website-title">Weather or Not</div>
       <div class="weather-search">
         <form class="search-form" id="city-name">
           <div class="row">
@@ -63,13 +57,20 @@
         <div class="row justify-content-between">
           <div class="col-6">
             <h1 class="search-city-output" id="search-city-output"></h1>
+            <h2 class="search-country-output" id="search-country-output"></h2>
           </div>
           <div class="col-5 current-date" id="current-date-time">
             Wednesday, November 13, 2022 |
             <span class="current-time">9:50</span>
           </div>
         </div>
+        <hr />
         <div class="row">
+          <div class="col-6">
+            <div class="image">
+              <img src="" id="icon" class="icon" />
+            </div>
+          </div>
           <div class="col-6">
             <div class="d-flex temperature">
               <p class="current-temp" id="current-temp"></p>
@@ -81,29 +82,37 @@
               >
             </div>
           </div>
-          <div class="col-6">
-            <div class="image">
-              <img src="" id="icon" class="icon" />
+        </div>
+        <div class="current-description" id="current-description">
+          Partly Cloudy
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-4">
+            <div class="current-wind">
+              Wind:
+              <div id="current-wind" class="wind">4 km/h</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="current-humidity">
+              Humidity:
+              <div id="current-humidity" class="humidity">68%</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="feels-like">
+              Feels like:
+              <div id="feels-like" class="feels">9</div>
             </div>
           </div>
         </div>
-        <div class="other-information">
-          <ul>
-            <li class="current-description" id="current-description">
-              Partly cloudy
-            </li>
-            <li id="current-humidity">Humidity: 68%</li>
-            <li id="current-wind">Wind: 4 km/h</li>
-            <li id="feels-like">Feels like: 09</li>
-          </ul>
-        </div>
         <div class="updated-time">
           Last Updated:
-          <br />
-          <div class="updated-time" id="updated-time"></div>
+          <span class="updated-time" id="updated-time"></span>
         </div>
       </div>
-      <small>
+      <p class="open-source">
         <a
           href="https://github.com/daniela-fmj/WeatherApp-Vanilla"
           target="_blank"
@@ -111,7 +120,7 @@
           Open-source code</a
         >
         by Daniela Fernández Méndez Jiménez
-      </small>
+      </p>
     </div>
     <script src="src/app.js"></script>
   </body>
