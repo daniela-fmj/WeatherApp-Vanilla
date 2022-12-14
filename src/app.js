@@ -74,36 +74,61 @@ function formatUpdate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
-  let forecastElement = document.querySelector("#weather-forecast");
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  let days = ["Tue", "Fri", "Sat", "Sun", "Mon"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#weather-forecast");
 
   let forecastHTML = `<div class ="card-group">`;
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
       <div class="card text-center">
-        <div class="card-header day1">${day}</div>
+        <div class="card-header day1">${formatDay(forecastDay.time)}</div>
         <div class="card-body">
           <img
-            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+              forecastDay.condition.icon
+            }.png"
             id="icon-day1"
             class="icon-day1"
           />
           <div class="card-text high-low">
-            <span class="weather-forecast-high1">21°</span>
-            <span class="weather-forecast-low1">12°</span>
+            <span class="weather-forecast-high1">${Math.round(
+              forecastDay.temperature.maximum
+            )}°</span>
+            <span class="weather-forecast-low1">${Math.round(
+              forecastDay.temperature.minimum
+            )}°</span>
           </div>
         </div>
       </div>
 `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "bb5334ba8af33c900ec45484b2tfof2d";
+  let units = "metric";
+  let latitude = coordinates.latitude;
+  let longitude = coordinates.longitude;
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
+  axios.get(apiURL).then(displayForecast);
 }
 
 function convertToFahrenheit(event) {
@@ -155,6 +180,8 @@ function showWeather(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
+
+  getForecast(response.data.coordinates);
 }
 
 function searchOutput(city) {
@@ -189,4 +216,3 @@ let farUnit = document.querySelector("#fahrenheit-link");
 farUnit.addEventListener("click", convertToFahrenheit);
 
 searchOutput("Boston");
-displayForecast();
