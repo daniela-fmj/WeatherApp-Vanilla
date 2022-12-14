@@ -74,6 +74,38 @@ function formatUpdate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+
+  let days = ["Tue", "Fri", "Sat", "Sun", "Mon"];
+
+  let forecastHTML = `<div class ="card-group">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="card text-center">
+        <div class="card-header day1">${day}</div>
+        <div class="card-body">
+          <img
+            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+            id="icon-day1"
+            class="icon-day1"
+          />
+          <div class="card-text high-low">
+            <span class="weather-forecast-high1">21°</span>
+            <span class="weather-forecast-low1">12°</span>
+          </div>
+        </div>
+      </div>
+`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function convertToFahrenheit(event) {
   event.preventDefault();
   let currentTemp = document.querySelector("#current-temp");
@@ -155,3 +187,6 @@ celUnit.addEventListener("click", convertToCelsius);
 
 let farUnit = document.querySelector("#fahrenheit-link");
 farUnit.addEventListener("click", convertToFahrenheit);
+
+searchOutput("Boston");
+displayForecast();
