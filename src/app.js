@@ -124,28 +124,11 @@ function displayForecast(response) {
 function getForecast(coordinates) {
   console.log(coordinates);
   let apiKey = "bb5334ba8af33c900ec45484b2tfof2d";
-  let units = "metric";
+  let units = "imperial";
   let latitude = coordinates.latitude;
   let longitude = coordinates.longitude;
   let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
   axios.get(apiURL).then(displayForecast);
-}
-
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let currentTemp = document.querySelector("#current-temp");
-  celUnit.classList.remove("active");
-  farUnit.classList.add("active");
-  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
-  currentTemp.innerHTML = Math.round(fahrenheitTemp);
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  celUnit.classList.add("active");
-  farUnit.classList.remove("active");
-  let currentTemp = document.querySelector("#current-temp");
-  currentTemp.innerHTML = Math.round(celsiusTemperature);
 }
 
 function showWeather(response) {
@@ -171,7 +154,7 @@ function showWeather(response) {
   countryElement.innerHTML = `${country}`;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   descriptionElement.innerHTML = response.data.condition.description;
-  windElement.innerHTML = `${wind} km/h`;
+  windElement.innerHTML = `${wind} mi/h`;
   humidityElement.innerHTML = `${humidity}%`;
   feelsLikeElement.innerHTML = `${feelsLike}°`;
   upDateElement.innerHTML = formatUpdate(response.data.time * 1000);
@@ -186,7 +169,7 @@ function showWeather(response) {
 
 function searchOutput(city) {
   let apiKey = "bb5334ba8af33c900ec45484b2tfof2d";
-  let units = "metric";
+  let units = "Imperial";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showWeather);
 }
@@ -197,8 +180,6 @@ function submitCity(event) {
   searchOutput(cityName.value);
 }
 
-let celsiusTemperature = null;
-
 //Calling date and time
 let currentDate = document.querySelector(".current-date");
 currentDate.innerHTML = formatDate(currentTime);
@@ -207,12 +188,4 @@ currentDate.innerHTML = formatDate(currentTime);
 let citySearch = document.querySelector("#city-name");
 citySearch.addEventListener("submit", submitCity);
 
-//Celsius-Fahrenheit
-
-let celUnit = document.querySelector("#celsius-link");
-celUnit.addEventListener("click", convertToCelsius);
-
-let farUnit = document.querySelector("#fahrenheit-link");
-farUnit.addEventListener("click", convertToFahrenheit);
-
-searchOutput("Boston");
+searchOutput("Ann Arbor");

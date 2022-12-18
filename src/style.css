@@ -75,15 +75,11 @@ hr {
 
 .units {
   position: relative;
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: bold;
   top: 25px;
   left: -5px;
   letter-spacing: -4px;
-}
-
-.celsius-link:hover,
-.fahrenheit-link:hover {
-  text-decoration: underline;
 }
 
 .image {
